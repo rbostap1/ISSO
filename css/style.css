@@ -326,38 +326,51 @@ a {
    Team Cards
    ========================================================================== */
 .team-card {
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg);
     transition: var(--transition);
     overflow: hidden;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .team-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
 }
 
 .team-card .card-img-top {
     height: 250px;
     object-fit: cover;
+    transition: var(--transition);
+}
+
+.team-card:hover .card-img-top {
+    transform: scale(1.1);
 }
 
 .team-placeholder {
     height: 250px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: var(--transition);
+}
+
+.team-card:hover .team-placeholder {
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
 }
 
 .team-placeholder i {
     font-size: 5rem;
     color: var(--white);
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .team-social a {
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -368,8 +381,9 @@ a {
 }
 
 .team-social a:hover {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
+    transform: translateY(-3px);
 }
 
 /* ==========================================================================
@@ -487,43 +501,65 @@ a {
    ========================================================================== */
 .form-control,
 .form-select {
-    padding: 0.75rem 1rem;
+    padding: 0.875rem 1.25rem;
     border-radius: var(--border-radius);
-    border: 1px solid #e2e8f0;
+    border: 2px solid #e2e8f0;
     transition: var(--transition);
+    font-size: 1rem;
 }
 
 .form-control:focus,
 .form-select:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
 }
 
 /* ==========================================================================
    Resource Cards
    ========================================================================== */
 .resource-card {
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg);
     transition: var(--transition);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .resource-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
 }
 
 .resource-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-    border-radius: var(--border-radius);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    border-radius: var(--border-radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transition: var(--transition);
+}
+
+.resource-card:hover .resource-icon {
+    transform: rotate(-5deg) scale(1.1);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
 }
 
 .resource-icon i {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: var(--white);
 }
 
@@ -531,23 +567,45 @@ a {
    Membership Pricing Cards
    ========================================================================== */
 .pricing-card {
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg);
     transition: var(--transition);
+    border: 2px solid rgba(99, 102, 241, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .pricing-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
 }
 
 .pricing-card.featured {
     border: 2px solid var(--primary-color);
+    position: relative;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.pricing-card.featured::before {
+    content: 'POPULAR';
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 5px 40px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .pricing-card .price {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary-color);
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .pricing-card .price span {
@@ -582,8 +640,8 @@ a {
    Page Headers
    ========================================================================== */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    padding: 4rem 0;
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #8b5cf6 100%);
+    padding: 5rem 0 3rem;
     color: var(--white);
     position: relative;
     overflow: hidden;
@@ -596,13 +654,35 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(236, 72, 153, 0.3) 0%, transparent 50%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .page-header > .container {
     position: relative;
     z-index: 1;
+}
+
+.page-header h1 {
+    font-weight: 900;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .breadcrumb {
@@ -632,27 +712,37 @@ a {
    Contact Page
    ========================================================================== */
 .contact-info-card {
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-lg);
     transition: var(--transition);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .contact-info-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
 }
 
 .contact-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transition: var(--transition);
+}
+
+.contact-info-card:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
 }
 
 .contact-icon i {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: var(--white);
 }
 
@@ -673,20 +763,49 @@ a {
    Footer
    ========================================================================== */
 .footer {
-    background-color: var(--dark-color);
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--dark-secondary) 100%);
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+}
+
+.footer h5, .footer h6 {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.footer a {
+    transition: var(--transition);
 }
 
 .footer a:hover {
-    color: var(--white) !important;
+    color: var(--primary-light) !important;
+    transform: translateX(5px);
 }
 
 .social-icons a {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
     font-size: 1.25rem;
     transition: var(--transition);
 }
 
 .social-icons a:hover {
-    opacity: 0.8;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    transform: translateY(-3px);
 }
 
 /* ==========================================================================
