@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavbarShrink();
     initSmoothScroll();
     initAnimateOnScroll();
+    initStatCounters();
+    initParallaxEffect();
 });
 
 /**
@@ -98,6 +100,69 @@ function initAnimateOnScroll() {
     });
 
     animatedElements.forEach(el => observer.observe(el));
+}
+
+/**
+ * Animated Number Counters for Stats
+ */
+function initStatCounters() {
+    const statNumbers = document.querySelectorAll('.stat-item h2');
+    
+    if (statNumbers.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.counted) {
+                entry.target.dataset.counted = 'true';
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    statNumbers.forEach(stat => observer.observe(stat));
+}
+
+function animateCounter(element) {
+    const text = element.textContent;
+    const match = text.match(/^(\d+)(.*)$/);
+    if (!match) return;
+    
+    const number = parseInt(match[1]);
+    const suffix = match[2];
+    const duration = 2000;
+    const steps = 60;
+    const increment = number / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= number) {
+            element.textContent = number + suffix;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + suffix;
+        }
+    }, duration / steps);
+}
+
+/**
+ * Parallax Effect for Hero Section
+ */
+function initParallaxEffect() {
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection) return;
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const rate = scrolled * 0.5;
+        
+        if (scrolled < heroSection.offsetHeight) {
+            heroSection.style.transform = `translateY(${rate}px)`;
+        }
+    });
 }
 
 /**
