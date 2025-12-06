@@ -127,8 +127,11 @@ function initStatCounters() {
 
 function animateCounter(element) {
     const text = element.textContent;
-    const number = parseInt(text.replace(/\D/g, ''));
-    const suffix = text.replace(/[\d\s]/g, '');
+    const match = text.match(/^(\d+)(.*)$/);
+    if (!match) return;
+    
+    const number = parseInt(match[1]);
+    const suffix = match[2];
     const duration = 2000;
     const steps = 60;
     const increment = number / steps;
@@ -153,7 +156,7 @@ function initParallaxEffect() {
     if (!heroSection) return;
 
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
+        const scrolled = window.scrollY;
         const rate = scrolled * 0.5;
         
         if (scrolled < heroSection.offsetHeight) {
